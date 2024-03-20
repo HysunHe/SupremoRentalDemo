@@ -15,7 +15,7 @@ then
         sudo docker rm transaction-service0
 fi
 
-sudo docker pull hysunhe/transaction-service0
+sudo docker pull hysunhe/transaction-service-springboot
 
 sudo docker run -d \
     --restart=always \
