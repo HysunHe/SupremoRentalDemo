@@ -5,37 +5,30 @@ then
     source ~/app.env
 fi
 
-nodes=`docker ps -a | grep 'login-service-redis0' | wc -l`
+nodes=`sudo docker ps -a | grep 'login-service-redis0' | wc -l`
 if [[ $nodes > 0 ]]
 then
 	echo "Stopping exist service..."
-	docker stop login-service-redis0
+	sudo docker stop login-service-redis0
 
 	echo "Removing exist service..."
-	docker rm login-service-redis0
+	sudo docker rm login-service-redis0
 fi
 
-#image=`docker images | grep 'hysunhe/login-service-redis' | awk '{print $3}'`
-#if [[ -n "$image" ]]
-#then
-#	echo "Removing local image..."
-#	docker rmi -f $image
-#fi
+sudo docker pull hysunhe/login-service-redis
 
-docker pull hysunhe/login-service-redis
-
-docker run -d \
+sudo docker run -d \
     --restart=always \
     --name=login-service-redis0 \
-	-e DB_HOST="144.24.107.204" \
-	-e DB_PORT="5432" \
-	-e DB_NAME="poc_car" \
-	-e DB_USER="ouser" \
-	-e DB_PASSWORD="BotWelcome123##" \
+	-e DB_HOST="$PG_HOST" \
+	-e DB_PORT="$PG_PORT" \
+	-e DB_NAME="$PG_DBNAME" \
+	-e DB_USER="$PG_USER" \
+	-e DB_PASSWORD="$PG_PASSWORD" \
     -e POOL_MIN=1 \
     -e POOL_MAX=1 \
-	-e REDIS_HOST="amaaaaaay5l3z3yabjckinlvpnqhhgssuphzcpak3jlpfbnmjdyokej4le5q-p.redis.ap-mumbai-1.oci.oraclecloud.com" \
-	-e REDIS_PORT="6379" \
+    -e REDIS_HOST="$REDIS_HOST" \
+    -e REDIS_PORT="$REDIS_PORT" \
     -p 8082:8080 \
     hysunhe/login-service-redis:latest
 

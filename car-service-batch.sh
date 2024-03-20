@@ -14,23 +14,23 @@ do
 port=$((port+1))
 echo $port
 
-nodes=`docker ps -a | grep "car-service-noredis$i" | wc -l`
+nodes=`sudo docker ps -a | grep "car-service-noredis$i" | wc -l`
 if [[ $nodes > 0 ]]
 then
         echo "Stopping exist service..."
-        docker stop car-service-noredis$i
+        sudo docker stop car-service-noredis$i
 
         echo "Removing exist service..."
-        docker rm car-service-noredis$i
+        sudo docker rm car-service-noredis$i
 fi
 
-docker run -d \
+sudo docker run -d \
     --restart=always \
     --name=car-service-noredis$i \
     -v ~/wallet:/app/wallet \
-    -e DB_USER="ouser" \
-    -e DB_PASSWORD="BotWelcome123##" \
-    -e DB_CONNECTION_STRING="jsondb_medium" \
+    -e DB_USER="$AJD_USER" \
+    -e DB_PASSWORD="$AJD_PASSWORD" \
+    -e DB_CONNECTION_STRING="$AJD_TNS_NAME" \
     -e POOL_MIN=23 \
     -e POOL_MAX=23 \
     -e POOL_INCR=1 \
