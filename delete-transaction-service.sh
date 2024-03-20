@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [[ -f ~/app.env ]]
+then
+    source ~/app.env
+fi
+
 nodes=`sudo docker ps -a | grep 'transaction-service0' | wc -l`
 if [[ $nodes > 0 ]]
 then

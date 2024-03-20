@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [[ -f ~/app.env ]]
+then
+    source ~/app.env
+fi
+
 ./car-service-redis.sh
 
 port=8300

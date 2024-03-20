@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [[ -f ~/app.env ]]
+then
+    source ~/app.env
+fi
+
 ./transaction-service.sh
 
 port=8600

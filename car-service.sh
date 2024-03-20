@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ -f ~/app.env ]]
+then
+    source ~/app.env
+fi
+
 nodes=`sudo docker ps -a | grep 'car-service-noredis0' | wc -l`
 if [[ $nodes > 0 ]]
 then
@@ -23,9 +28,9 @@ sudo docker run -d \
     --restart=always \
     --name=car-service-noredis0 \
     -v ~/wallet:/app/wallet \
-    -e DB_USER="ouser" \
-    -e DB_PASSWORD="BotWelcome123##" \
-    -e DB_CONNECTION_STRING="jsondb_medium" \
+    -e DB_USER="$AJD_USER" \
+    -e DB_PASSWORD="$AJD_PASSWORD" \
+    -e DB_CONNECTION_STRING="$AJD_TNS_NAME" \
     -e POOL_MIN=23 \
     -e POOL_MAX=23 \
     -e POOL_INCR=1 \

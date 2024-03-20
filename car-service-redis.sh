@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ -f ~/app.env ]]
+then
+    source ~/app.env
+fi
+
 nodes=`sudo docker ps -a | grep 'car-service-redis0' | wc -l`
 if [[ $nodes > 0 ]]
 then

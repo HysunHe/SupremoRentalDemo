@@ -1,5 +1,12 @@
 #!/bin/sh
 
+if [[ -f ~/app.env ]]
+then
+    source ~/app.env
+fi
+
+source ~/app.env
+
 ./car-health-service.sh
 
 port=8700
