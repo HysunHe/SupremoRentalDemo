@@ -5,26 +5,26 @@ then
     source ~/app.env
 fi
 
-nodes=`sudo docker ps -a | grep 'car-health-service0' | wc -l`
+nodes=`docker ps -a | grep 'car-health-service0' | wc -l`
 if [[ $nodes > 0 ]]
 then
 	echo "Stopping exist service..."
-	sudo docker stop car-health-service0
+	docker stop car-health-service0
 
 	echo "Removing exist service..."
-	sudo docker rm car-health-service0
+	docker rm car-health-service0
 fi
 
-#image=`sudo docker images | grep 'hysunhe/car-health-service' | awk '{print $3}'`
+#image=`docker images | grep 'hysunhe/car-health-service' | awk '{print $3}'`
 #if [[ -n "$image" ]]
 #then
 #	echo "Removing local image..."
-#	sudo docker rmi -f $image
+#	docker rmi -f $image
 #fi
 
-sudo docker pull hysunhe/car-health-service
+docker pull hysunhe/car-health-service
 
-sudo docker run -d \
+docker run -d \
     --restart=always \
     --name=car-health-service0 \
     -v ~/.oci/:/app/oci/ \

@@ -5,19 +5,19 @@ then
     source ~/app.env
 fi
 
-nodes=`sudo docker ps -a | grep 'transaction-service-springboot' | wc -l`
+nodes=`docker ps -a | grep 'transaction-service-springboot' | wc -l`
 if [[ $nodes > 0 ]]
 then
         echo "Stopping exist service..."
-        sudo docker stop transaction-service-springboot
+        docker stop transaction-service-springboot
 
         echo "Removing exist service..."
-        sudo docker rm transaction-service-springboot
+        docker rm transaction-service-springboot
 fi
 
-sudo docker pull hysunhe/transaction-service-springboot
+docker pull hysunhe/transaction-service-springboot
 
-sudo docker run -d \
+docker run -d \
     --restart=always \
     --name=transaction-service-springboot \
     -p 8801:8080 \

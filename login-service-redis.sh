@@ -5,26 +5,26 @@ then
     source ~/app.env
 fi
 
-nodes=`sudo docker ps -a | grep 'login-service-redis0' | wc -l`
+nodes=`docker ps -a | grep 'login-service-redis0' | wc -l`
 if [[ $nodes > 0 ]]
 then
 	echo "Stopping exist service..."
-	sudo docker stop login-service-redis0
+	docker stop login-service-redis0
 
 	echo "Removing exist service..."
-	sudo docker rm login-service-redis0
+	docker rm login-service-redis0
 fi
 
-#image=`sudo docker images | grep 'hysunhe/login-service-redis' | awk '{print $3}'`
+#image=`docker images | grep 'hysunhe/login-service-redis' | awk '{print $3}'`
 #if [[ -n "$image" ]]
 #then
 #	echo "Removing local image..."
-#	sudo docker rmi -f $image
+#	docker rmi -f $image
 #fi
 
-sudo docker pull hysunhe/login-service-redis
+docker pull hysunhe/login-service-redis
 
-sudo docker run -d \
+docker run -d \
     --restart=always \
     --name=login-service-redis0 \
 	-e DB_HOST="144.24.107.204" \

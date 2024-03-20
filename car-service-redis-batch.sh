@@ -14,17 +14,17 @@ do
 port=$((port+1))
 echo $port
 
-nodes=`sudo docker ps -a | grep "car-service-redis$i" | wc -l`
+nodes=`docker ps -a | grep "car-service-redis$i" | wc -l`
 if [[ $nodes > 0 ]]
 then
         echo "Stopping exist service..."
-        sudo docker stop car-service-redis$i
+        docker stop car-service-redis$i
 
         echo "Removing exist service..."
-        sudo docker rm car-service-redis$i
+        docker rm car-service-redis$i
 fi
 
-sudo docker run -d \
+docker run -d \
     --restart=always \
     --name=car-service-redis$i \
     -v ~/wallet:/app/wallet \

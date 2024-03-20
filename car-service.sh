@@ -5,26 +5,26 @@ then
     source ~/app.env
 fi
 
-nodes=`sudo docker ps -a | grep 'car-service-noredis0' | wc -l`
+nodes=`docker ps -a | grep 'car-service-noredis0' | wc -l`
 if [[ $nodes > 0 ]]
 then
 	echo "Stopping exist service..."
-	sudo docker stop car-service-noredis0
+	docker stop car-service-noredis0
 
 	echo "Removing exist service..."
-	sudo docker rm car-service-noredis0
+	docker rm car-service-noredis0
 fi
 
-#image=`sudo docker images | grep 'hysunhe/car-service' | awk '{print $3}'`
+#image=`docker images | grep 'hysunhe/car-service' | awk '{print $3}'`
 #if [[ -n "$image" ]]
 #then
 #	echo "Removing local image..."
-#	sudo docker rmi -f $image
+#	docker rmi -f $image
 #fi
 
-sudo docker pull hysunhe/car-service
+docker pull hysunhe/car-service
 
-sudo docker run -d \
+docker run -d \
     --restart=always \
     --name=car-service-noredis0 \
     -v ~/wallet:/app/wallet \

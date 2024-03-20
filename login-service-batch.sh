@@ -14,17 +14,17 @@ do
 port=$((port+1))
 echo $port
 
-nodes=`sudo docker ps -a | grep "login-service-noredis$i" | wc -l`
+nodes=`docker ps -a | grep "login-service-noredis$i" | wc -l`
 if [[ $nodes > 0 ]]
 then
         echo "Stopping exist service..."
-        sudo docker stop login-service-noredis$i
+        docker stop login-service-noredis$i
 
         echo "Removing exist service..."
-        sudo docker rm login-service-noredis$i
+        docker rm login-service-noredis$i
 fi
 
-sudo docker run -d \
+docker run -d \
     --restart=always \
     --name=login-service-noredis$i \
 	-e DB_HOST="144.24.107.204" \

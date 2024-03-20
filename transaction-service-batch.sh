@@ -14,17 +14,17 @@ do
 port=$((port+1))
 echo $port
 
-nodes=`sudo docker ps -a | grep "transaction-service$i" | wc -l`
+nodes=`docker ps -a | grep "transaction-service$i" | wc -l`
 if [[ $nodes > 0 ]]
 then
         echo "Stopping exist service..."
-        sudo docker stop transaction-service$i
+        docker stop transaction-service$i
 
         echo "Removing exist service..."
-        sudo docker rm transaction-service$i
+        docker rm transaction-service$i
 fi
 
-sudo docker run -d \
+docker run -d \
     --restart=always \
     --name=transaction-service$i \
     -e DB_HOST="144.24.107.204" \

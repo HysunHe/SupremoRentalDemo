@@ -5,28 +5,28 @@ then
     source ~/app.env
 fi
 
-nodes=`sudo docker ps -a | grep 'transaction-service0' | wc -l`
+nodes=`docker ps -a | grep 'transaction-service0' | wc -l`
 if [[ $nodes > 0 ]]
 then
 	echo "Stopping exist service..."
-	sudo docker stop transaction-service0
+	docker stop transaction-service0
 
 	echo "Removing exist service..."
-	sudo docker rm transaction-service0
+	docker rm transaction-service0
 fi
 
-#image=`sudo docker images | grep 'hysunhe/transaction-service' | awk '{print $3}'`
+#image=`docker images | grep 'hysunhe/transaction-service' | awk '{print $3}'`
 #if [[ -n "$image" ]]
 #then
 #	echo "Removing local image..."
-#	sudo docker rmi -f $image
+#	docker rmi -f $image
 #fi
 
-sudo docker pull hysunhe/transaction-service
+docker pull hysunhe/transaction-service
 
 echo "Downloading latest image and run it..."
 
-sudo docker run -d \
+docker run -d \
     --restart=always \
     --name=transaction-service0 \
     -e DB_HOST="144.24.107.204" \
