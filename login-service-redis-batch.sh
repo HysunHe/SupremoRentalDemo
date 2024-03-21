@@ -5,7 +5,7 @@ then
     source ~/app.env
 fi
 
-./login-service-redis.sh
+~/SupremoRentalDemo/login-service-redis.sh
 
 port=8500
 for ((i=2; i<=10; i++))

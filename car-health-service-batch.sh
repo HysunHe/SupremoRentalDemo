@@ -7,7 +7,7 @@ fi
 
 source ~/app.env
 
-./car-health-service.sh
+~/SupremoRentalDemo/car-health-service.sh
 
 port=8700
 for ((i=2; i<=10; i++))

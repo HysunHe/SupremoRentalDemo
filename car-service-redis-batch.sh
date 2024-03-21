@@ -5,7 +5,7 @@ then
     source ~/app.env
 fi
 
-./car-service-redis.sh
+~/SupremoRentalDemo/car-service-redis.sh
 
 port=8300
 for ((i=2; i<=10; i++))

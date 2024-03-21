@@ -5,7 +5,7 @@ then
     source ~/app.env
 fi
 
-./transaction-service.sh
+~/SupremoRentalDemo/transaction-service.sh
 
 port=8600
 for ((i=2; i<=3; i++))

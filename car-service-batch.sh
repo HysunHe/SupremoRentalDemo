@@ -5,7 +5,7 @@ then
     source ~/app.env
 fi
 
-./car-service.sh
+~/SupremoRentalDemo/car-service.sh
 
 port=8200
 for ((i=2; i<=10; i++))

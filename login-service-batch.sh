@@ -5,7 +5,7 @@ then
     source ~/app.env
 fi
 
-./login-service.sh
+~/SupremoRentalDemo/login-service.sh
 
 port=8400
 for ((i=2; i<=10; i++))
