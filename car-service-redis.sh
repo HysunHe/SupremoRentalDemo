@@ -15,13 +15,6 @@ then
 	sudo docker rm car-service-redis0
 fi
 
-#image=`sudo docker images | grep 'hysunhe/car-service-redis' | awk '{print $3}'`
-#if [[ -n "$image" ]]
-#then
-#	echo "Removing local image..."
-#	sudo docker rmi -f $image
-#fi
-
 sudo docker pull hysunhe/car-service-redis
 
 sudo docker run -d \
@@ -30,7 +23,7 @@ sudo docker run -d \
     -v ~/wallet:/app/wallet \
     -e DB_USER="$AJD_USER" \
     -e DB_PASSWORD="$AJD_PASSWORD" \
-    -e DB_CONNECTION_STRING="$AJD_TNS_NAME" \\
+    -e DB_CONNECTION_STRING="$AJD_TNS_NAME" \
     -e POOL_MIN=1 \
     -e POOL_MAX=1 \
     -e POOL_INCR=1 \
