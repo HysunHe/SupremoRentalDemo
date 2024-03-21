@@ -5,6 +5,12 @@ then
     source ~/app.env
 fi
 
+region=$NOSQL_REGION
+if [[ -z $region ]]
+then
+    region=$REGION
+fi
+
 nodes=`sudo docker ps -a | grep 'car-health-service0' | wc -l`
 if [[ $nodes > 0 ]]
 then
@@ -21,10 +27,10 @@ sudo docker run -d \
     --restart=always \
     --name=car-health-service0 \
     -v ~/.oci/:/app/oci/ \
-    -e REGION="$NOSQL_REGION" \
+    -e REGION="$region" \
     -e COMPARTMENT="$NOSQL_COMPARTMENT" \
     -e OCI_CONFIG_FILE="/app/oci/config" \
-    -e OCI_CONFIG_PROFILE="$NOSQL_OCI_CONFIG_FILE_PROFILE" \
+    -e OCI_CONFIG_PROFILE="DEFAULT" \
     -p 8086:8080 \
     hysunhe/car-health-service:latest
 

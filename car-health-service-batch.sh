@@ -5,7 +5,11 @@ then
     source ~/app.env
 fi
 
-source ~/app.env
+region=$NOSQL_REGION
+if [[ -z $region ]]
+then
+    region=$REGION
+fi
 
 ~/SupremoRentalDemo/car-health-service.sh
 
@@ -30,10 +34,10 @@ sudo docker run -d \
     --restart=always \
     --name=car-health-service$i \
     -v ~/.oci/:/app/oci/ \
-    -e REGION="$NOSQL_REGION" \
+    -e REGION="$region" \
     -e COMPARTMENT="$NOSQL_COMPARTMENT" \
     -e OCI_CONFIG_FILE="/app/oci/config" \
-    -e OCI_CONFIG_PROFILE="$NOSQL_OCI_CONFIG_FILE_PROFILE" \
+    -e OCI_CONFIG_PROFILE="DEFAULT" \
     -p $port:8080 \
     hysunhe/car-health-service:latest
 
