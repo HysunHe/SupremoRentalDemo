@@ -20,11 +20,14 @@ sudo docker pull hysunhe/transaction-service-springboot
 sudo docker run -d \
     --restart=always \
     --name=transaction-service0 \
-    -e DB_CONN_STR="jdbc:postgresql://$PG_HOST:$PG_PORT/$PG_DBNAME" \
     -e DB_USER="$PG_USER" \
     -e DB_PASS="$PG_PASSWORD" \
-    -e DB_POOL_MIN=5 \
-    -e DB_POOL_MAX=20 \
+    -e RW_DB_CONN_STR="jdbc:postgresql://$PG_ENDPOINT:$PG_PORT/$PG_DBNAME" \
+    -e RW_DB_POOL_MIN=2 \
+    -e RW_DB_POOL_MAX=10 \
+    -e RO_DB_CONN_STR="jdbc:postgresql://$PG_HOST:$PG_PORT/$PG_DBNAME" \
+    -e RO_DB_POOL_MIN=2 \
+    -e RO_DB_POOL_MAX=10 \
     -p 8083:8080 \
     hysunhe/transaction-service-springboot:latest
 
