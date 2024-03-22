@@ -30,7 +30,7 @@ sudo docker run -d \
     -e DB_CONN_STR="jdbc:postgresql://$PG_HOST:$PG_PORT/$PG_DBNAME" \
     -e DB_USER="$PG_USER" \
     -e DB_PASS="$PG_PASSWORD" \
-    -e DB_POOL_MIN=20 \
+    -e DB_POOL_MIN=5 \
     -e DB_POOL_MAX=20 \
     -p $port:8080 \
     hysunhe/transaction-service-springboot:latest

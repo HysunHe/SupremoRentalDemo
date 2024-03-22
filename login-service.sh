@@ -32,7 +32,7 @@ sudo docker run -d \
 	-e DB_NAME="$PG_DBNAME" \
 	-e DB_USER="$PG_USER" \
 	-e DB_PASSWORD="$PG_PASSWORD" \
-    -e POOL_MIN=2 \
+    -e POOL_MIN=1 \
     -e POOL_MAX=2 \
     -p 8085:8080 \
     hysunhe/login-service:latest

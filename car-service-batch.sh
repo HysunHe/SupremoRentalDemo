@@ -31,9 +31,9 @@ sudo docker run -d \
     -e DB_USER="$AJD_USER" \
     -e DB_PASSWORD="$AJD_PASSWORD" \
     -e DB_CONNECTION_STRING="$AJD_TNS_NAME" \
-    -e POOL_MIN=2 \
+    -e POOL_MIN=1 \
     -e POOL_MAX=10 \
-    -e POOL_INCR=2 \
+    -e POOL_INCR=1 \
     -p $port:8080 \
     hysunhe/car-service:latest
 
