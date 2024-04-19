@@ -7,8 +7,8 @@ fi
 
 sudo docker pull hysunhe/askme-service
 
-port=8700
-for ((i=2; i<=3; i++))
+port=8800
+for ((i=2; i<=4; i++))
 do	
 
 port=$((port+1))
