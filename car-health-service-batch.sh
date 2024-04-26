@@ -33,7 +33,7 @@ fi
 sudo docker run -d \
     --restart=always \
     --name=car-health-service$i \
-    -v ~/.oci/:/app/oci/ \
+    -v ~/.oci_docker/:/app/oci/ \
     -e REGION="$region" \
     -e COMPARTMENT="$NOSQL_COMPARTMENT" \
     -e OCI_CONFIG_FILE="/app/oci/config" \
